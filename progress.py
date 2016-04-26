@@ -17,9 +17,9 @@ class ProgressTracker(object):
 
         self.first_cp = None
         self.latest_cp = None
-        
-        if (self.save_filename is not None and 
-            os.path.exists(self.save_filename) and 
+
+        if (self.save_filename is not None and
+            os.path.exists(self.save_filename) and
             remove_existing_progress_file):
             os.unlink(self.save_filename)
 
@@ -31,10 +31,10 @@ class ProgressTracker(object):
             self.first_cp = cp
         self.latest_cp = cp
         return cp
-    
-    
+
+
     def estimate_completion(self):
-        if ((self.latest_cp['record'] <= self.first_cp['record']) or 
+        if ((self.latest_cp['record'] <= self.first_cp['record']) or
             self.finish_record is None):
             return {
                 'pct_done': None,
@@ -58,14 +58,14 @@ class ProgressTracker(object):
             'pct_done': pct_done,
             'pct_done_human': '{p:5.2f}%'.format(p=pct_done),
             'total_time': total_time,
-            'finish_time': finish_time, 
+            'finish_time': finish_time,
             'finish_time_human': finish_time_human,
             'finish_record': self.finish_record,
             'records_per_minute': records_per_minute,
             'rpm': '{x:8.4f}'.format(x=records_per_minute),
             }
-    
-    
+
+
     def save(self):
         assert (self.save_filename is not None)
 
